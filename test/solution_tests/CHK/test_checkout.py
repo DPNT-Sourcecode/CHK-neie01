@@ -7,3 +7,6 @@ class TestCheckout():
         assert CheckoutSolution().checkout(skus="AAAADG") == -1
         assert CheckoutSolution().checkout(skus="B") == 30
         assert CheckoutSolution().checkout(skus="BB") == 45
+        assert CheckoutSolution().checkout(skus="AAAAAAAAA") == 380
+        assert CheckoutSolution().checkout(skus="AEEBBB") == 125
+

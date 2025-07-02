@@ -5,33 +5,57 @@ from collections import Counter
 class Item:
     name: str
     price: int
-    offer: str = None
+    offers: str = None
 
 class CheckoutSolution:
 
     # skus = unicode string
     def checkout(self, skus: str) -> int:
 
-        items = {
-            "A": Item(name="A", price=50, offer="3:130"),    
-            "B": Item(name="B", price=30, offer="2:45"),    
-            "C": Item(name="C", price=20),
-            "D": Item(name="D", price=15),
+        prices = {
+            "A": 50,    
+            "B": 30,    
+            "C": 20,
+            "D": 15,
+            "E": 15,
         }
 
-        basket_counter = Counter(list(skus))
-
-        basket_total = 0
-        for item_name, quantity in basket_counter.items():
-            if item_name not in items:
+        for char in skus:
+            if char not in prices:
                 return -1
-            
-            item: Item = items[item_name]
-            if item.offer is None:
-                basket_total += item.price * quantity
-            
-            else:
-                offer = tuple(map(int,item.offer.split(":")))
-                basket_total += (quantity // offer[0]) * offer[1] + (quantity % offer[0]) * item.price
+
+        # Count each items in the basket
+        basket_counter = Counter(skus)
+
+        total_cost = 0
+
+        # Process E first
+        if "E" in basket_counter:
+            # 2E -> B free
+            total_free_b = basket_counter["E"] // 2
+            total_cost += basket_counter["E"] * prices["E"]
+            basket_counter["B"] = max(0, basket_counter["B"] - total_free_b)
         
-        return basket_total
+        if "A" in basket_counter:
+            total_5a_deals = basket_counter["A"] // 5
+            total_cost += total_5a_deals * 200
+            remaining_5a = basket_counter["A"] % 5
+
+            total_3a_deals = remaining_5a // 3
+            total_cost += total_3a_deals * 130
+            remaining_3a = remaining_5a % 3
+
+            total_cost += remaining_3a * prices["A"]
+        
+        if "B" in basket_counter:
+            num_2b_deals = basket_counter["B"] // 2
+            total_cost += num_2b_deals * 45
+            total_cost += basket_counter["B"] % 2 * prices["B"]
+        
+        if "C" in basket_counter:
+            total_cost += basket_counter["C"] * prices["C"]
+
+        if "D" in basket_counter:
+            total_cost += basket_counter["D"] * prices["D"]        
+        
+        return total_cost
