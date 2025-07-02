@@ -8,5 +8,9 @@ class TestCheckout():
         assert CheckoutSolution().checkout(skus="B") == 30
         assert CheckoutSolution().checkout(skus="BB") == 45
         assert CheckoutSolution().checkout(skus="AAAAAAAAA") == 380
-        assert CheckoutSolution().checkout(skus="AEEBBB") == 125
+        assert CheckoutSolution().checkout(skus="AEEBBB") == 175
+        assert CheckoutSolution().checkout(skus="E") == 40
+        assert CheckoutSolution().checkout(skus="EE") == 80
+        assert CheckoutSolution().checkout(skus="ABCDE") == 155
+
 
