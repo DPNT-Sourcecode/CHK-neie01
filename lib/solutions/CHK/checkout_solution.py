@@ -49,10 +49,7 @@ class CheckoutSolution:
 
         # Process E first
         if "E" in basket_counter:
-            # 2E -> B free
-            total_free_b = basket_counter["E"] // 2
-            total_cost += basket_counter["E"] * prices["E"]
-            basket_counter["B"] = max(0, basket_counter["B"] - total_free_b)
+            total_cost += _item_off_offer(basket=basket_counter, prices=prices, item="E", item_quantity_for_offer=2, offer_item="B", offer_quantity=1)
         
         if "A" in basket_counter:
             total_5a_deals = basket_counter["A"] // 5
@@ -83,4 +80,5 @@ class CheckoutSolution:
                 
         
         return total_cost
+
 
