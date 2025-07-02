@@ -6,4 +6,3 @@ class HelloSolution:
         """Return a greeting to the world"""
 
         return f"Hello, {friend_name}!"
-
