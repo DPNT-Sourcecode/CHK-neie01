@@ -5,4 +5,5 @@ class HelloSolution:
     def hello(self, friend_name: str) -> str:
         """Return a greeting to the world"""
 
-        return f"Hello, World!"
+        return f"Hello, {friend_name}!"
+
