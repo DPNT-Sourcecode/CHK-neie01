@@ -84,5 +84,3 @@ class CheckoutSolution:
         
         return total_cost
 
-
-
