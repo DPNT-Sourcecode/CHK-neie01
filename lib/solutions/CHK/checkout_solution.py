@@ -14,7 +14,7 @@ class CheckoutSolution:
 
         items = {
             "A": Item(name="A", price=50, offer="3:130"),    
-            "B": Item(name="B", price=30, offer="2:130"),    
+            "B": Item(name="B", price=30, offer="2:45"),    
             "C": Item(name="C", price=20),
             "D": Item(name="D", price=15),
         }
@@ -32,4 +32,6 @@ class CheckoutSolution:
             
             else:
                 offer = tuple(map(int,item.offer.split(":")))
-                basket_total += (quantity // offer[0]) * offer[1] + (quantity % offer[0]) * item.price 
+                basket_total += (quantity // offer[0]) * offer[1] + (quantity % offer[0]) * item.price
+        
+        return basket_total
