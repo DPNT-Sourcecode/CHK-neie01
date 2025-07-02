@@ -32,4 +32,4 @@ class CheckoutSolution:
             
             else:
                 offer = tuple(map(int,item.offer.split(":")))
-                
+                basket_total += (quantity // offer[0]) * offer[1] + (quantity % offer[0]) * item.price 
