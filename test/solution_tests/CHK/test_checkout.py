@@ -12,5 +12,10 @@ class TestCheckout():
         assert CheckoutSolution().checkout(skus="E") == 40
         assert CheckoutSolution().checkout(skus="EE") == 80
         assert CheckoutSolution().checkout(skus="ABCDE") == 155
+        assert CheckoutSolution().checkout(skus="FF") == 20
+        assert CheckoutSolution().checkout(skus="FF") == 20
+        assert CheckoutSolution().checkout(skus="FFF") == 20
+        assert CheckoutSolution().checkout(skus="FFFFFFF") == 50
+
 
 

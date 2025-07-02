@@ -60,7 +60,11 @@ class CheckoutSolution:
             total_cost += basket_counter["D"] * prices["D"]
 
         if "F" in basket_counter:
+            total_3fs = basket_counter["F"] // 3
+            total_cost += total_3fs * 2 * prices["F"]
+            total_cost += (basket_counter["F"] % 3) * prices["F"]
                 
         
         return total_cost
+
 
