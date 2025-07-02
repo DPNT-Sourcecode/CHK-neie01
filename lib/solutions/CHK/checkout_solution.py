@@ -14,10 +14,7 @@ def _quantity_for_price_offer(offer_quantity, offer_price, item_quantity, item_p
 
 
 def _item_off_offer(basket: dict, prices: dict, item: str, item_quantity_for_offer: int, offer_item: str, offer_quantity: int):
-        if not item in prices:
-            return -1
-    
-        total_free_item = basket[item] // offer_quantity
+        total_free_item = basket[item] // item_quantity_for_offer
         total_cost = basket[item] * prices[item]
         basket[offer_item] = max(0, basket[offer_item] - total_free_item)
 
@@ -49,7 +46,13 @@ class CheckoutSolution:
 
         # Process E first
         if "E" in basket_counter:
-            total_cost += _item_off_offer(basket=basket_counter, prices=prices, item="E", item_quantity_for_offer=2, offer_item="B", offer_quantity=1)
+            total_cost += _item_off_offer(
+                basket=basket_counter,
+                prices=prices, item="E",
+                item_quantity_for_offer=2,
+                offer_item="B",
+                offer_quantity=1,
+            )
         
         if "A" in basket_counter:
             total_5a_deals = basket_counter["A"] // 5
@@ -80,5 +83,6 @@ class CheckoutSolution:
                 
         
         return total_cost
+
 
 
