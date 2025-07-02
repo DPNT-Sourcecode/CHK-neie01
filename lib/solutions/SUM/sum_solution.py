@@ -8,4 +8,3 @@ class SumSolution:
             raise ValueError(f"Arguments must be between 0-100")
 
         return x + y 
-
