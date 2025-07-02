@@ -16,6 +16,3 @@ class TestCheckout():
         assert CheckoutSolution().checkout(skus="FF") == 20
         assert CheckoutSolution().checkout(skus="FFF") == 20
         assert CheckoutSolution().checkout(skus="FFFFFFF") == 50
-
-
-
