@@ -18,6 +18,7 @@ class CheckoutSolution:
             "C": 20,
             "D": 15,
             "E": 40,
+            "F": 10,
         }
 
         for char in skus:
@@ -56,7 +57,10 @@ class CheckoutSolution:
             total_cost += basket_counter["C"] * prices["C"]
 
         if "D" in basket_counter:
-            total_cost += basket_counter["D"] * prices["D"]        
+            total_cost += basket_counter["D"] * prices["D"]
+
+        if "F" in basket_counter:
+                
         
         return total_cost
 
