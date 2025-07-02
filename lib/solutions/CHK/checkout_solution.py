@@ -7,6 +7,23 @@ class Item:
     price: int
     offers: str = None
 
+def _quantity_for_price_offer(offer_quantity, offer_price, item_quantity, item_price) -> int:
+    total_price = (item_quantity // offer_quantity) * offer_price
+    total_price += (item_quantity % offer_quantity) * item_price
+    return total_price
+
+
+def _item_off_offer(basket: dict, prices: dict, item: str, item_quantity_for_offer: int, offer_item: str, offer_quantity: int):
+        if not item in prices:
+            return -1
+    
+        total_free_item = basket[item] // offer_quantity
+        total_cost = basket[item] * prices[item]
+        basket[offer_item] = max(0, basket[offer_item] - total_free_item)
+
+        return total_cost
+
+
 class CheckoutSolution:
 
     # skus = unicode string
@@ -66,3 +83,4 @@ class CheckoutSolution:
                 
         
         return total_cost
+
